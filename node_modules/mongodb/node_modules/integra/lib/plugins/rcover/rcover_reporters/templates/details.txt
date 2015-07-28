@@ -1,0 +1,11 @@
+<table>
+<tbody>
+{{#each sourceLines}}
+	<tr id="{{@index}}">
+		<td id="{{@index}}-number">{{@index}}</td>
+		<td id="{{@index}}-coverage-count"></td>
+		<td id="{{@index}}-source">{{this}}</td>
+	</tr>
+{{/each}}
+</tbody>
+</table>

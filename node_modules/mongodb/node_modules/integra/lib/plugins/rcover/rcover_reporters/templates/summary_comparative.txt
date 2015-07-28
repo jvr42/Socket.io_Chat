@@ -1,0 +1,14 @@
+Test 1: 
+<select id="test1">
+<option value=""></option>
+{{#each tests}}
+<option value="{{this}}">{{this}}</option>
+{{/each}}
+</select>
+Test 2:
+<select id="test2">
+<option value=""></option>
+{{#each tests}}
+<option value="{{this}}">{{this}}</option>
+{{/each}}
+</select>

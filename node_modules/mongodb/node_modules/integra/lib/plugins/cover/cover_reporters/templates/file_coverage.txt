@@ -1,0 +1,4 @@
+<tr>
+	<td class="line-count">{{#show_lines}}{{maxLines}}{{/show_lines}}</td><td class="line-coverage">{{#show_line_execution_counts fileCoverage}}{{maxLines}}{{/show_line_execution_counts}}</td>
+	<td class="text"><pre class="prettyprint lang-js">{{#show_code structured}}{{/show_code}}</pre></td>
+</tr>

@@ -1,0 +1,1 @@
+Search: <input type="text" id="search" size="40"/>

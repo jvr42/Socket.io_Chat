@@ -1,0 +1,8 @@
+<table width="80%" id="content" align="center">
+<tbody>
+	<tr>
+		<td id="left" valign="top"></td>
+		<td id="right" valign="top" width="100%"></td>
+	</tr>	
+</tbody>
+</table>

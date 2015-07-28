@@ -1,0 +1,8 @@
+By Test: 
+<select id="test">
+<option value=""></option>
+{{#each tests}}
+<option value="{{this}}">{{this}}</option>
+{{/each}}
+</select>
+Over Coverage Heat: <input type="button" id="heat" value="Show"/>
