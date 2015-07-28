@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
-
+    <title>Perpikaz - Node.js|Express|Socket.io Chat - Jesus Villarroel (jvr42@hotmail.com)</title>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
@@ -20,17 +19,25 @@
   </head>
   <body>
       <div class="container-fluid">
-          <div class="row">
-              <div class="col-lg-6">
-                  <input type="text" id="mensaje" class="form-control">
+          <div style="padding:20px;">
+              <div class="row">
+                <div class="col-lg-12 col-xs-12">
+                    <div id="conected_users"></div>
+                </div>
               </div>
-              <div class="col-lg-6">
-                  <input type="button" id="enviar" class="btn btn-primary form-control" value="Enviar">
+              <div class="row">
+                  <div class="col-lg-6">
+                      <input type="text" id="mensaje" class="form-control">
+                  </div>
+                  <div class="col-lg-6">
+                      <input type="button" id="enviar" class="btn btn-primary form-control" value="Enviar">
+                  </div>
               </div>
           </div>
       </div>
-      <div id="mensajes"></div>
-
+      <div class="container-fluid">
+          <div id="mensajes"></div>
+      </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -45,13 +52,23 @@
         $('#enviar').click(function(){
             // retrive value from text input
             var mensaje = $('#mensaje').val();
-                socket.emit('news', { mensaje:  mensaje});
+                socket.emit('message', { mensaje:  mensaje});
             $('#mensaje').val("");
-            $('#mensajes').append($('<p>').text(mensaje));
+            var d = new Date();
+            var month = d.getMonth() + 1;
+            $('#mensajes').append($('<p>').text(d.getDate() + "/" + month + "/" + d.getFullYear() + " - " + mensaje));
+        });
+
+        socket.on('new', function () {
+          $('#conected_users').append($('<p>').text("new user connected"));
+        });
+
+        socket.on('out', function () {
+          $('#conected_users').append($('<p>').text("user disconnected"));
         });
 
         socket.on('response', function (data) {
-          $('#mensajes').append($('<p>').text(data));
+          $('#mensajes').append($('<p>').text(data.date + " - " + data.message));
         });
     </script>
   </body>

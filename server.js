@@ -10,11 +10,21 @@ server.listen(app.get('port') ,app.get('ip'), function () {
 });
 
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function (socket) {
-  socket.on('news', function (data) {
-    socket.broadcast.emit('response', data.mensaje);
-  });
+
+    socket.broadcast.emit('new');
+
+    socket.on('message', function (data) {
+       var d = new Date();
+       var month = d.getMonth() + 1;
+       socket.broadcast.emit('response', {date: d.getDate() + "/" + month + "/" + d.getFullYear(), message: data.mensaje});
+    });
+
+    socket.on('disconnect', function () {
+      io.emit('out');
+    });
+
 });
